@@ -1,7 +1,7 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "com.siddharthvaddem.openscreen",
+  "appId": "com.etiennelescot.openscreen",
   "asar": true,
   // .node binaries can't be dlopen'd from inside an asar — must live unpacked.
   "asarUnpack": [
@@ -82,6 +82,7 @@
     ],
     "icon": "icons/icons/png",
     "artifactName": "${productName}-Linux-${version}.${ext}",
+    "maintainer": "Etienne Lescot <etiennelescot@gmail.com>",
     "category": "AudioVideo"
   },
   "win": {
@@ -89,6 +90,7 @@
       "nsis"
     ],
     "icon": "icons/icons/win/icon.ico",
+    "artifactName": "${productName}.Setup.${version}.${ext}",
     "extraResources": [
       {
         "from": "electron/native/bin",

@@ -54,9 +54,6 @@ The goal of this continuation is to keep OpenScreen alive as a fully open-source
 
 Download the latest installer for your platform from the [GitHub Releases](https://github.com/EtienneLescot/openscreen/releases) page.
 
-> [!NOTE]
-> This fork is a continuation of the archived upstream project. Some package-manager distributions may still point to the original repository until the release pipeline is fully updated for this continuation.
-
 ### macOS
 
 Download the `.dmg` installer directly from the [Releases page](https://github.com/EtienneLescot/openscreen/releases). If Gatekeeper blocks the app, you can bypass it by running the following command in your terminal after installation:

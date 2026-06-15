@@ -9,9 +9,15 @@
 		"npm": "10.9.4"
 	},
 	"author": {
-		"name": "Sid",
-		"email": "svaddem@asu.edu"
+		"name": "Siddharth Vaddem",
+		"url": "https://github.com/siddharthvaddem"
 	},
+	"maintainers": [
+		{
+			"name": "Etienne Lescot",
+			"url": "https://github.com/EtienneLescot"
+		}
+	],
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build && electron-builder",
