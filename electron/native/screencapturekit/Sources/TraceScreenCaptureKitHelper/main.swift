@@ -118,6 +118,14 @@ func emitError(code: String, message: String) {
 	])
 }
 
+func requestScreenCaptureAccessOnly() {
+	let granted = CGPreflightScreenCaptureAccess() || CGRequestScreenCaptureAccess()
+	emit([
+		"event": "screen-access",
+		"granted": granted,
+	])
+}
+
 @available(macOS 13.0, *)
 final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 	private struct CaptureTarget {
@@ -607,7 +615,8 @@ final class ScreenCaptureRecorder: NSObject, SCStreamOutput, SCStreamDelegate {
 	}
 
 	private func resolveMicrophoneCaptureDeviceID() -> String? {
-		let devices = AVCaptureDevice.devices(for: .audio)
+		let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
+		let devices = discoverySession.devices
 
 		if let deviceName = request.audio.microphone.deviceName?.trimmingCharacters(in: .whitespacesAndNewlines),
 			!deviceName.isEmpty,
@@ -633,6 +642,11 @@ struct TraceScreenCaptureKitHelper {
 		do {
 			guard CommandLine.arguments.count == 2 else {
 				throw HelperError.invalidArguments
+			}
+
+			if CommandLine.arguments[1] == "--request-screen-access" {
+				requestScreenCaptureAccessOnly()
+				exit(0)
 			}
 
 			guard #available(macOS 13.0, *) else {

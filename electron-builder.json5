@@ -1,7 +1,7 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "com.etiennelescot.trace",
+  "appId": "com.drewsepeczi.trace",
   "asar": true,
   // .node binaries can't be dlopen'd from inside an asar — must live unpacked.
   "asarUnpack": [
@@ -46,8 +46,10 @@
     }
   ],
 
+  // Direct-download (DMG) distribution — not sandboxed.
   "mac": {
-    "notarize": false,
+    "identity": "ANDREW DOUGLAS SEPECZI (2NHJGX6A7S)",
+    "notarize": true,
     "hardenedRuntime": true,
     "entitlements": "macos.entitlements",
     "entitlementsInherit": "macos.entitlements",
@@ -59,6 +61,41 @@
     ],
     "icon": "icons/icons/mac/icon.icns",
     "artifactName": "${productName}-Mac-${arch}-${version}-Installer.${ext}",
+    "extraResources": [
+      {
+        "from": "electron/native/bin",
+        "to": "electron/native/bin",
+        "filter": ["darwin-*/*"]
+      }
+    ],
+    "extendInfo": {
+      "NSAudioCaptureUsageDescription": "Trace needs audio capture permission to record system audio.",
+      "NSMicrophoneUsageDescription": "Trace needs microphone access to record voice audio.",
+      "NSCameraUsageDescription": "Trace needs camera access to record webcam video.",
+      "NSScreenCaptureUsageDescription": "Trace needs screen recording permission to detect and capture windows.",
+      "NSCameraUseContinuityCameraDeviceType": true
+    }
+  },
+
+  // Mac App Store (MAS) distribution — sandboxed.
+  // Build with: electron-builder --mas
+  // NOTE: Before the first MAS build you must:
+  //   1. Obtain a "Mac App Store Distribution" certificate + provisioning profile from Apple Developer
+  //   2. Fill in the TEAM_ID in .env and CI secrets
+  //   3. Replace "YOUR_TEAM_ID" below
+  //   4. Verify mas.entitlements covers all capabilities Apple's review requires
+  //   5. Run a dry build to confirm signing + packaging works end-to-end
+  "mas": {
+    "identity": "3rd Party Mac Developer Application: Andrew Douglas Sepeczi (2NHJGX6A7S)",
+    "notarize": false, // MAS builds are notarized by Apple during review — do not enable
+    "hardenedRuntime": false, // MAS uses sandbox, not hardened runtime
+    "entitlements": "mas.entitlements",
+    "entitlementsInherit": "mas.entitlements",
+    "provisioningProfile": "embedded.provisionprofile",
+    "type": "distribution",
+    "category": "public.app-category.video",
+    "icon": "icons/icons/mac/icon.icns",
+    "artifactName": "${productName}-MAS-${version}.${ext}",
     "extraResources": [
       {
         "from": "electron/native/bin",

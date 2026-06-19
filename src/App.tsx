@@ -1,3 +1,5 @@
+// biome-ignore-all lint/correctness/noUnusedVariables: components used by lazy() — TS/BIOME can't see the Suspense reference
+
 import { lazy, Suspense, useEffect, useState } from "react";
 import { CountdownOverlay } from "./components/launch/CountdownOverlay.tsx";
 import { LaunchWindow } from "./components/launch/LaunchWindow";

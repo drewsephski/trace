@@ -5,10 +5,6 @@
 >
 > This fork continues development under the Trace name with the original author's approval, while remaining fully MIT open source.
 
-> [!WARNING]
-> Trace is not production-grade software. You should expect bugs, rough edges, and occasional breaking changes.
-
-
 <p align="center">
   <img src="public/trace.png" alt="Trace Logo" width="64" />
 </p>
@@ -17,65 +13,52 @@
 
 <p align="center"><strong>Trace is a free, open-source tool for creating polished screen recordings, product demos, and walkthroughs.</strong></p>
 
-Trace was originally positioned as a free, open-source alternative to Screen Studio: something you can use to create quick, polished product demos and walkthroughs for X, Reddit, YouTube, documentation, landing pages, or internal demos.
+Trace is a professional screen recording and editing app for macOS, Windows, and Linux. Record your screen, webcam, and audio — then edit, caption, and export in minutes. AI-powered auto-zoom, on-device captions, cursor effects, and more, all processed locally.
 
-It is not a 1:1 clone of Screen Studio. Screen Studio is an excellent commercial product. Trace focuses on covering the core open-source workflow: recording, zooms, cursor effects, webcam overlay, captions, editing, annotations, and export.
-
-The goal of this continuation is to keep Trace alive as a fully open-source project and progressively evolve it toward a broader recording and editing workflow.
-
-**100% free** for both **personal** and **commercial** use. Use it, modify it, distribute it. Please respect the license.
+> **100% free** for both **personal** and **commercial** use. Use it, modify it, distribute it. Please respect the license.
 
 > [!NOTE]
 > Software should be accessible. Trace has no paid tiers, premium features, upsells, or functionality locked behind a paywall.
 
 <p align="center">
-	<img src="public/demo.png" alt="" style="height: 0.2467; margin-right: 12px;" />
-  <img src="public/sample.png" alt="" style="height: 0.2467; margin-right: 12px;" />
+  <img src="public/demo.png" alt="" />
+  <img src="public/sample.png" alt="" />
 </p>
 
 ## Core Features
-- Record a specific window, or your whole screen.
-- Record microphone and system audio.
-- Webcam overlay with picture-in-picture, drag-to-position, mirroring, and shape options.
-- Auto or manual zooms with adjustable depth, duration, easing, and pixel-precise position; auto-zoom follows your cursor as you work.
-- Custom cursor size, smoothing, and click effects, with cursor themes and post-recording path smoothing.
-- Automatic captions for voiceovers, generated on-device with no upload (works offline).
-- Wallpapers, solid colors, gradients, or your own background image.
-- Motion blur.
-- Crop, trim, and per-segment speed control on the timeline.
-- Text, arrow, and image annotations, with text animation presets.
-- Timeline snapping guides and an audio waveform to make trimming easier.
-- Customizable keyboard shortcuts.
-- Export to MP4 or GIF in multiple aspect ratios and resolutions.
-- Languages supported: Arabic, English, Spanish, French, Italian, Japanese, Korean, Portuguese (Brazil), Russian, Turkish, Vietnamese, Simplified Chinese, and Traditional Chinese.
 
+- **Record** a specific window, or your whole screen.
+- **Audio** — Record microphone and system audio simultaneously.
+- **Webcam overlay** — Picture-in-picture, drag-to-position, mirroring, and shape options.
+- **Auto-zoom** — Follows your cursor as you work, with adjustable depth, duration, easing, and pixel-precise positioning.
+- **Cursor effects** — Custom size, smoothing, click effects, themes, and post-recording path smoothing.
+- **AI captions** — Automatic voiceover captions generated on-device (works offline, no upload).
+- **Backgrounds** — Wallpapers, solid colors, gradients, or your own image.
+- **Motion blur** — Smooth, natural-looking movement.
+- **Video editor** — Timeline with crop, trim, per-segment speed control, snapping guides, and audio waveform.
+- **Annotations** — Text, arrow, and image overlays with text animation presets.
+- **Custom shortcuts** — Fully customizable keyboard shortcuts.
+- **Export** — MP4 or GIF, multiple aspect ratios and resolutions.
+- **Localized** — Arabic, English, Spanish, French, Italian, Japanese, Korean, Portuguese (Brazil), Russian, Turkish, Vietnamese, Simplified Chinese, and Traditional Chinese.
 
 ## Installation
 
-Download the latest installer for your platform from the [GitHub Releases](https://github.com/EtienneLescot/trace/releases) page.
-
 ### macOS
 
-Download the `.dmg` installer directly from the [Releases page](https://github.com/EtienneLescot/trace/releases). If Gatekeeper blocks the app, you can bypass it by running the following command in your terminal after installation:
+**Mac App Store** (recommended): Search for "Trace" on the Mac App Store.
 
-```bash
-xattr -rd com.apple.quarantine /Applications/Trace.app
-```
-
-Note: Give your terminal Full Disk Access in **System Settings > Privacy & Security** to grant you access and then run the above command.
-
-After running this command, proceed to **System Preferences > Security & Privacy** to grant the necessary permissions for "screen recording" and "accessibility". Once permissions are granted, you can launch the app.
+**Direct download**: Download the latest `.dmg` from the [GitHub Releases](https://github.com/drewsephski/trace/releases) page.
 
 > [!NOTE]
 > **Upgrading from an older version and hitting permission issues?** If you already had Trace installed and the new version won't record (Screen Recording or Accessibility keep failing even after you grant them), uninstall the old version, remove Trace's existing entries under **System Settings > Privacy & Security** (both Screen Recording and Accessibility), then do a fresh install and grant the permissions again when prompted.
 
 ### Windows
 
-Download the `.exe` installer directly from the [Releases page](https://github.com/EtienneLescot/trace/releases).
+Download the `.exe` installer directly from the [Releases page](https://github.com/drewsephski/trace/releases).
 
 ### Linux
 
-Three packages are published to the [Releases page](https://github.com/EtienneLescot/trace/releases) for each version. Pick the one that matches your distro:
+Three packages are published to the [Releases page](https://github.com/drewsephski/trace/releases) for each version. Pick the one that matches your distro:
 
 **Debian / Ubuntu / Pop!_OS (`.deb`)**
 ```bash
@@ -97,18 +80,18 @@ chmod +x Trace-Linux-*.AppImage
 
 Try without installing:
 ```bash
-nix run github:EtienneLescot/trace
+nix run github:drewsephski/trace
 ```
 
 Install into your user profile:
 ```bash
-nix profile install github:EtienneLescot/trace
+nix profile install github:drewsephski/trace
 ```
 
 For a NixOS system config (flake):
 ```nix
 {
-  inputs.trace.url = "github:EtienneLescot/trace";
+  inputs.trace.url = "github:drewsephski/trace";
 
   outputs = { nixpkgs, trace, ... }: {
     nixosConfigurations.<host> = nixpkgs.lib.nixosSystem {
@@ -130,7 +113,7 @@ You may need to grant screen recording permissions depending on your desktop env
 ./Trace-Linux-*.AppImage --no-sandbox
 ```
 
-### Platform differences
+## Platform Differences
 
 Everything in the editor and export is the same on macOS, Windows, and Linux: zooms, backgrounds, motion blur, crop/trim/speed, blur regions, annotations, auto-captions, projects, export, and all languages. The differences are in **capture**, where macOS and Windows use a native pipeline that Linux doesn't have:
 
@@ -142,7 +125,44 @@ Everything in the editor and export is the same on macOS, Windows, and Linux: zo
   - **Windows**: works out of the box.
   - **Linux**: needs PipeWire (default on Ubuntu 22.04+, Fedora 34+). Older PulseAudio-only setups may not capture system audio (mic should still work).
 
----
+## Building from Source
+
+Prerequisites: Node.js 22, npm.
+
+```bash
+npm ci
+npm run build:mac   # macOS
+npm run build:win   # Windows
+npm run build:linux # Linux
+```
+
+For Mac App Store builds:
+```bash
+npm run build:native:mac
+tsc && vite build
+electron-builder --mas
+```
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Changelog
+
+### v1.5.0 — June 2026
+
+- Rebrand from OpenScreen to Trace
+- CI pipeline for automated builds and releases
+- Native macOS ScreenCaptureKit recording helper
+- Native Windows WGC recording helper
+- AI auto-zoom with cursor tracking
+- On-device AI captions (works offline)
+- Webcam overlay with PiP, mirroring, shapes
+- Custom cursor effects with themes and smoothing
+- Full video editor with timeline, trim, speed control, annotations
+- GIF and MP4 export
+- 13 language translations
+- Project save/load with persistence
 
 ## License
 

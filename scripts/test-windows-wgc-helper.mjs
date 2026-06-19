@@ -13,8 +13,7 @@ const HELPER_PATH =
 
 const DURATION_MS = Number(process.env.TRACE_WGC_TEST_DURATION_MS ?? 5000);
 const WITH_SYSTEM_AUDIO =
-	process.env.TRACE_WGC_TEST_SYSTEM_AUDIO === "true" ||
-	process.argv.includes("--system-audio");
+	process.env.TRACE_WGC_TEST_SYSTEM_AUDIO === "true" || process.argv.includes("--system-audio");
 const WITH_MICROPHONE =
 	process.env.TRACE_WGC_TEST_MICROPHONE === "true" ||
 	process.argv.includes("--microphone") ||
@@ -24,8 +23,7 @@ const WITH_WINDOW =
 const WITH_WEBCAM =
 	process.env.TRACE_WGC_TEST_WEBCAM === "true" || process.argv.includes("--webcam");
 const CAPTURE_CURSOR =
-	process.env.TRACE_WGC_TEST_CAPTURE_CURSOR === "true" ||
-	process.argv.includes("--capture-cursor");
+	process.env.TRACE_WGC_TEST_CAPTURE_CURSOR === "true" || process.argv.includes("--capture-cursor");
 
 function runHelper(config) {
 	return new Promise((resolve, reject) => {

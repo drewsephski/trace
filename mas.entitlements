@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Required for all Mac App Store apps -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+
+	<!-- Required for Electron's V8 JIT compilation -->
+	<key>com.apple.security.cs.allow-jit</key>
+	<true/>
+
+	<!-- Required for Electron's native module loading -->
+	<key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+	<true/>
+
+	<!-- Required for loading Electron's bundled frameworks/dylibs -->
+	<key>com.apple.security.cs.disable-library-validation</key>
+	<true/>
+
+	<!-- Audio input (microphone / system audio capture) -->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+
+	<!-- Camera (webcam capture) -->
+	<key>com.apple.security.device.camera</key>
+	<true/>
+
+	<!--
+		Screen / display capture for MAS.
+		NOTE: com.apple.security.device.screen-capture is NOT available in sandboxed MAS apps.
+		Use capture-input instead, which allows capturing display content for legitimate
+		purposes (recording demos, tutorials). Apple's review team will ask why you need it —
+		be prepared to explain the screen recording use case.
+	-->
+	<key>com.apple.security.device.capture-input</key>
+	<true/>
+
+	<!-- Network access (auto-caption model download, update checks, etc.) -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+
+	<!-- File access: user-selected files (open/save dialogs) -->
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
+
+	<!-- File access: downloads directory for exported recordings -->
+	<key>com.apple.security.files.downloads.read-write</key>
+	<true/>
+</dict>
+</plist>

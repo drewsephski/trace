@@ -675,6 +675,55 @@ async function findNativeMacCaptureHelperPath() {
 	return null;
 }
 
+async function requestNativeMacScreenCaptureAccess() {
+	const helperPath = await findNativeMacCaptureHelperPath();
+	if (!helperPath) {
+		return null;
+	}
+
+	return await new Promise<{ success: boolean; granted: boolean; error?: string }>((resolve) => {
+		let settled = false;
+		let granted = false;
+		let stderr = "";
+		const child = spawn(helperPath, ["--request-screen-access"], {
+			stdio: ["ignore", "pipe", "pipe"],
+		});
+
+		const settle = (result: { success: boolean; granted: boolean; error?: string }) => {
+			if (settled) return;
+			settled = true;
+			resolve(result);
+		};
+
+		child.stdout.on("data", (chunk) => {
+			const lines = String(chunk).split(/\r?\n/).filter(Boolean);
+			for (const line of lines) {
+				try {
+					const event = JSON.parse(line) as { event?: string; granted?: boolean };
+					if (event.event === "screen-access") {
+						granted = event.granted === true;
+					}
+				} catch {
+					// Ignore helper diagnostic output that is not JSON.
+				}
+			}
+		});
+		child.stderr.on("data", (chunk) => {
+			stderr += String(chunk);
+		});
+		child.on("error", (error) => {
+			settle({ success: false, granted: false, error: error.message });
+		});
+		child.on("close", (code) => {
+			settle({
+				success: code === 0,
+				granted,
+				...(code === 0 ? {} : { error: stderr.trim() || `Helper exited with code ${code}` }),
+			});
+		});
+	});
+}
+
 function isWindowsGraphicsCaptureOsSupported() {
 	if (process.platform !== "win32") {
 		return false;
@@ -1289,12 +1338,22 @@ export function registerIpcHandlers(
 					mainWin.focus();
 				}
 				app.focus({ steal: true });
-				desktopCapturer
+				const nativeAccess = await requestNativeMacScreenCaptureAccess();
+				if (nativeAccess) {
+					const nextStatus = systemPreferences.getMediaAccessStatus("screen");
+					return {
+						success: nativeAccess.success,
+						granted: nativeAccess.granted || nextStatus === "granted",
+						status: nextStatus,
+						...(nativeAccess.error ? { error: nativeAccess.error } : {}),
+					};
+				}
+				await desktopCapturer
 					.getSources({ types: ["screen"], thumbnailSize: { width: 1, height: 1 } })
-					.catch(() => {
-						// Permission probing failure is reported by the explicit status check below.
-					});
-				return { success: true, granted: false, status: "not-determined" };
+					.catch(() => undefined);
+
+				const nextStatus = systemPreferences.getMediaAccessStatus("screen");
+				return { success: true, granted: nextStatus === "granted", status: nextStatus };
 			}
 
 			return { success: true, granted: false, status };
@@ -1417,36 +1476,6 @@ export function registerIpcHandlers(
 	});
 
 	ipcMain.handle("open-source-selector", async () => {
-		const access = await requestScreenAccess();
-		if (!access.granted) {
-			if (process.platform === "darwin" && access.status !== "not-determined") {
-				const mainWin = getMainWindow();
-				const messageOptions = {
-					type: "warning",
-					buttons: ["Open System Settings", "Cancel"],
-					defaultId: 0,
-					cancelId: 1,
-					message: "Screen Recording permission is required",
-					detail:
-						"Allow Trace in macOS System Settings, then come back and choose a screen or window.",
-				} satisfies Electron.MessageBoxOptions;
-				const result =
-					mainWin && !mainWin.isDestroyed()
-						? await dialog.showMessageBox(mainWin, messageOptions)
-						: await dialog.showMessageBox(messageOptions);
-				if (result.response === 0) {
-					await shell.openExternal(
-						"x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture",
-					);
-				}
-			}
-			return {
-				opened: false,
-				reason: "screen-access-required",
-				access,
-			};
-		}
-
 		const sourceSelectorWin = getSourceSelectorWindow();
 		if (sourceSelectorWin) {
 			sourceSelectorWin.focus();

@@ -41,7 +41,8 @@
 		"defaultSourceName": "Screen"
 	},
 	"recording": {
-		"selectSource": "Please select a source to record"
+		"selectSource": "Please select a source to record",
+		"selectSourceHint": "Click to select a screen or window to record"
 	},
 	"language": "Language",
 	"systemLanguagePrompt": {
