@@ -1,24 +1,10 @@
-> [!NOTE]
-> This repository is an independent continuation of Trace.
->
-> Trace was originally created by [Siddharth Vaddem](https://github.com/siddharthvaddem). The original repository was archived after v1.5.0 and remains available here: [siddharthvaddem/trace](https://github.com/siddharthvaddem/trace).
->
-> This fork continues development under the Trace name with the original author's approval, while remaining fully MIT open source.
-
-<p align="center">
-  <img src="public/trace.png" alt="Trace Logo" width="64" />
-</p>
-
 # <p align="center">Trace</p>
 
-<p align="center"><strong>Trace is a free, open-source tool for creating polished screen recordings, product demos, and walkthroughs.</strong></p>
+<p align="center"><strong>Trace is an open-source tool for creating polished screen recordings, product demos, and walkthroughs.</strong></p>
 
 Trace is a professional screen recording and editing app for macOS, Windows, and Linux. Record your screen, webcam, and audio — then edit, caption, and export in minutes. AI-powered auto-zoom, on-device captions, cursor effects, and more, all processed locally.
 
-> **100% free** for both **personal** and **commercial** use. Use it, modify it, distribute it. Please respect the license.
-
-> [!NOTE]
-> Software should be accessible. Trace has no paid tiers, premium features, upsells, or functionality locked behind a paywall.
+> Use it, modify it, distribute it. Please respect the license.
 
 <p align="center">
   <img src="public/demo.png" alt="" />
