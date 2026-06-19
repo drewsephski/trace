@@ -1,11 +1,11 @@
-# Home Manager module for OpenScreen
+# Home Manager module for Trace
 # Usage in flake-based Home Manager config:
 #
-#   inputs.openscreen.url = "github:EtienneLescot/openscreen";
+#   inputs.trace.url = "github:EtienneLescot/trace";
 #
 #   { inputs, ... }: {
-#     imports = [ inputs.openscreen.homeManagerModules.default ];
-#     programs.openscreen.enable = true;
+#     imports = [ inputs.trace.homeManagerModules.default ];
+#     programs.trace.enable = true;
 #   }
 self:
 {
@@ -16,17 +16,17 @@ self:
 }:
 
 let
-  cfg = config.programs.openscreen;
+  cfg = config.programs.trace;
 in
 {
-  options.programs.openscreen = {
-    enable = lib.mkEnableOption "OpenScreen screen recorder";
+  options.programs.trace = {
+    enable = lib.mkEnableOption "Trace screen recorder";
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = self.packages.${pkgs.stdenv.hostPlatform.system}.openscreen;
-      defaultText = lib.literalExpression "inputs.openscreen.packages.\${pkgs.stdenv.hostPlatform.system}.openscreen";
-      description = "The OpenScreen package to use.";
+      default = self.packages.${pkgs.stdenv.hostPlatform.system}.trace;
+      defaultText = lib.literalExpression "inputs.trace.packages.\${pkgs.stdenv.hostPlatform.system}.trace";
+      description = "The Trace package to use.";
     };
   };
 

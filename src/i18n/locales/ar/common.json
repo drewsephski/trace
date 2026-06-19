@@ -31,9 +31,9 @@
 		"zoomOut": "تصغير",
 		"toggleFullScreen": "ملء الشاشة",
 		"recordingStatus": "جاري التسجيل: {{source}}",
-		"about": "حول OpenScreen",
+		"about": "حول Trace",
 		"services": "خدمات",
-		"hide": "إخفاء OpenScreen",
+		"hide": "إخفاء Trace",
 		"hideOthers": "إخفاء الآخرين",
 		"unhide": "إظهار الكل"
 	},

@@ -1,32 +1,32 @@
 > [!NOTE]
-> This repository is an independent continuation of OpenScreen.
+> This repository is an independent continuation of Trace.
 >
-> OpenScreen was originally created by [Siddharth Vaddem](https://github.com/siddharthvaddem). The original repository was archived after v1.5.0 and remains available here: [siddharthvaddem/openscreen](https://github.com/siddharthvaddem/openscreen).
+> Trace was originally created by [Siddharth Vaddem](https://github.com/siddharthvaddem). The original repository was archived after v1.5.0 and remains available here: [siddharthvaddem/trace](https://github.com/siddharthvaddem/trace).
 >
-> This fork continues development under the OpenScreen name with the original author's approval, while remaining fully MIT open source.
+> This fork continues development under the Trace name with the original author's approval, while remaining fully MIT open source.
 
 > [!WARNING]
-> OpenScreen is not production-grade software. You should expect bugs, rough edges, and occasional breaking changes.
+> Trace is not production-grade software. You should expect bugs, rough edges, and occasional breaking changes.
 
 
 <p align="center">
-  <img src="public/openscreen.png" alt="OpenScreen Logo" width="64" />
+  <img src="public/trace.png" alt="Trace Logo" width="64" />
 </p>
 
-# <p align="center">OpenScreen</p>
+# <p align="center">Trace</p>
 
-<p align="center"><strong>OpenScreen is a free, open-source tool for creating polished screen recordings, product demos, and walkthroughs.</strong></p>
+<p align="center"><strong>Trace is a free, open-source tool for creating polished screen recordings, product demos, and walkthroughs.</strong></p>
 
-OpenScreen was originally positioned as a free, open-source alternative to Screen Studio: something you can use to create quick, polished product demos and walkthroughs for X, Reddit, YouTube, documentation, landing pages, or internal demos.
+Trace was originally positioned as a free, open-source alternative to Screen Studio: something you can use to create quick, polished product demos and walkthroughs for X, Reddit, YouTube, documentation, landing pages, or internal demos.
 
-It is not a 1:1 clone of Screen Studio. Screen Studio is an excellent commercial product. OpenScreen focuses on covering the core open-source workflow: recording, zooms, cursor effects, webcam overlay, captions, editing, annotations, and export.
+It is not a 1:1 clone of Screen Studio. Screen Studio is an excellent commercial product. Trace focuses on covering the core open-source workflow: recording, zooms, cursor effects, webcam overlay, captions, editing, annotations, and export.
 
-The goal of this continuation is to keep OpenScreen alive as a fully open-source project and progressively evolve it toward a broader recording and editing workflow.
+The goal of this continuation is to keep Trace alive as a fully open-source project and progressively evolve it toward a broader recording and editing workflow.
 
 **100% free** for both **personal** and **commercial** use. Use it, modify it, distribute it. Please respect the license.
 
 > [!NOTE]
-> Software should be accessible. OpenScreen has no paid tiers, premium features, upsells, or functionality locked behind a paywall.
+> Software should be accessible. Trace has no paid tiers, premium features, upsells, or functionality locked behind a paywall.
 
 <p align="center">
 	<img src="public/demo.png" alt="" style="height: 0.2467; margin-right: 12px;" />
@@ -52,14 +52,14 @@ The goal of this continuation is to keep OpenScreen alive as a fully open-source
 
 ## Installation
 
-Download the latest installer for your platform from the [GitHub Releases](https://github.com/EtienneLescot/openscreen/releases) page.
+Download the latest installer for your platform from the [GitHub Releases](https://github.com/EtienneLescot/trace/releases) page.
 
 ### macOS
 
-Download the `.dmg` installer directly from the [Releases page](https://github.com/EtienneLescot/openscreen/releases). If Gatekeeper blocks the app, you can bypass it by running the following command in your terminal after installation:
+Download the `.dmg` installer directly from the [Releases page](https://github.com/EtienneLescot/trace/releases). If Gatekeeper blocks the app, you can bypass it by running the following command in your terminal after installation:
 
 ```bash
-xattr -rd com.apple.quarantine /Applications/Openscreen.app
+xattr -rd com.apple.quarantine /Applications/Trace.app
 ```
 
 Note: Give your terminal Full Disk Access in **System Settings > Privacy & Security** to grant you access and then run the above command.
@@ -67,67 +67,67 @@ Note: Give your terminal Full Disk Access in **System Settings > Privacy & Secur
 After running this command, proceed to **System Preferences > Security & Privacy** to grant the necessary permissions for "screen recording" and "accessibility". Once permissions are granted, you can launch the app.
 
 > [!NOTE]
-> **Upgrading from an older version and hitting permission issues?** If you already had OpenScreen installed and the new version won't record (Screen Recording or Accessibility keep failing even after you grant them), uninstall the old version, remove OpenScreen's existing entries under **System Settings > Privacy & Security** (both Screen Recording and Accessibility), then do a fresh install and grant the permissions again when prompted.
+> **Upgrading from an older version and hitting permission issues?** If you already had Trace installed and the new version won't record (Screen Recording or Accessibility keep failing even after you grant them), uninstall the old version, remove Trace's existing entries under **System Settings > Privacy & Security** (both Screen Recording and Accessibility), then do a fresh install and grant the permissions again when prompted.
 
 ### Windows
 
-Download the `.exe` installer directly from the [Releases page](https://github.com/EtienneLescot/openscreen/releases).
+Download the `.exe` installer directly from the [Releases page](https://github.com/EtienneLescot/trace/releases).
 
 ### Linux
 
-Three packages are published to the [Releases page](https://github.com/EtienneLescot/openscreen/releases) for each version. Pick the one that matches your distro:
+Three packages are published to the [Releases page](https://github.com/EtienneLescot/trace/releases) for each version. Pick the one that matches your distro:
 
 **Debian / Ubuntu / Pop!_OS (`.deb`)**
 ```bash
-sudo apt install ./Openscreen-Linux-latest.deb
+sudo apt install ./Trace-Linux-latest.deb
 ```
 
 **Arch / Manjaro (`.pacman`)**
 ```bash
-sudo pacman -U Openscreen-Linux-latest.pacman
+sudo pacman -U Trace-Linux-latest.pacman
 ```
 
 **Any distro (`.AppImage`)**
 ```bash
-chmod +x Openscreen-Linux-*.AppImage
-./Openscreen-Linux-*.AppImage
+chmod +x Trace-Linux-*.AppImage
+./Trace-Linux-*.AppImage
 ```
 
 **NixOS / Nix (flake)**
 
 Try without installing:
 ```bash
-nix run github:EtienneLescot/openscreen
+nix run github:EtienneLescot/trace
 ```
 
 Install into your user profile:
 ```bash
-nix profile install github:EtienneLescot/openscreen
+nix profile install github:EtienneLescot/trace
 ```
 
 For a NixOS system config (flake):
 ```nix
 {
-  inputs.openscreen.url = "github:EtienneLescot/openscreen";
+  inputs.trace.url = "github:EtienneLescot/trace";
 
-  outputs = { nixpkgs, openscreen, ... }: {
+  outputs = { nixpkgs, trace, ... }: {
     nixosConfigurations.<host> = nixpkgs.lib.nixosSystem {
       modules = [
-        openscreen.nixosModules.default
-        { programs.openscreen.enable = true; }
+        trace.nixosModules.default
+        { programs.trace.enable = true; }
       ];
     };
   };
 }
 ```
 
-For Home Manager, use `openscreen.homeManagerModules.default` with the same `programs.openscreen.enable = true;`.
+For Home Manager, use `trace.homeManagerModules.default` with the same `programs.trace.enable = true;`.
 
 You may need to grant screen recording permissions depending on your desktop environment.
 
 **Sandbox error:** If the AppImage fails to launch with a "sandbox" error, run it with `--no-sandbox`:
 ```bash
-./Openscreen-Linux-*.AppImage --no-sandbox
+./Trace-Linux-*.AppImage --no-sandbox
 ```
 
 ### Platform differences

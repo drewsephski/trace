@@ -31,9 +31,9 @@
 		"zoomOut": "Zoom Out",
 		"toggleFullScreen": "Toggle Full Screen",
 		"recordingStatus": "Recording: {{source}}",
-		"about": "About OpenScreen",
+		"about": "About Trace",
 		"services": "Services",
-		"hide": "Hide OpenScreen",
+		"hide": "Hide Trace",
 		"hideOthers": "Hide Others",
 		"unhide": "Show All"
 	},
